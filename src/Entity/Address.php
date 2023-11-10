@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AdressRepository;
+use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AdressRepository::class)]
-class Adress
+#[ORM\Entity(repositoryClass: AddressRepository::class)]
+class Address
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,13 +14,13 @@ class Adress
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress0 = null;
+    private ?string $address0 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $adress1 = null;
+    private ?string $address1 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $adress2 = null;
+    private ?string $address2 = null;
 
     #[ORM\Column(length: 255)]
     private ?string $zipCode = null;
@@ -36,38 +36,38 @@ class Adress
         return $this->id;
     }
 
-    public function getAdress0(): ?string
+    public function getAddress0(): ?string
     {
-        return $this->adress0;
+        return $this->address0;
     }
 
-    public function setAdress0(string $adress0): static
+    public function setAddress0(string $address0): static
     {
-        $this->adress0 = $adress0;
+        $this->address0 = $address0;
 
         return $this;
     }
 
-    public function getAdress1(): ?string
+    public function getAddress1(): ?string
     {
-        return $this->adress1;
+        return $this->address1;
     }
 
-    public function setAdress1(?string $adress1): static
+    public function setAddress1(?string $address1): static
     {
-        $this->adress1 = $adress1;
+        $this->address1 = $address1;
 
         return $this;
     }
 
-    public function getAdress2(): ?string
+    public function getAddress2(): ?string
     {
-        return $this->adress2;
+        return $this->address2;
     }
 
-    public function setAdress2(?string $adress2): static
+    public function setAddress2(?string $address2): static
     {
-        $this->adress2 = $adress2;
+        $this->address2 = $address2;
 
         return $this;
     }

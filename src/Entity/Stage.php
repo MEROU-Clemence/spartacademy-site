@@ -37,7 +37,7 @@ class Stage
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Adress $adress = null;
+    private ?Address $address = null;
 
     public function getId(): ?int
     {
@@ -128,14 +128,14 @@ class Stage
         return $this;
     }
 
-    public function getAdress(): ?Adress
+    public function getAddress(): ?Address
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(?Adress $adress): static
+    public function setAddress(?Address $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
