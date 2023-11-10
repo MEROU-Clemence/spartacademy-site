@@ -1,0 +1,22 @@
+/* TOUT */
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* VERSION MOBILE 0-767px */
+
+/* VERSION TABLETTE 768 à 991 */
+@media (min-width: 768px) {
+
+    /* ici mon responsive medium */
+
+}
+
+/* VERSION COMPUTER 992px and + */
+@media (min-width: 992px) {
+
+    /* ici mon responsive big */
+
+}

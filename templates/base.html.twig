@@ -28,6 +28,10 @@
 
 	</head>
 	<body>
+		{% block menu %}
+			{% include "base/nav.html.twig" %}
+		{% endblock %}
+
 		{% block body %}{% endblock %}
 
 		{% block javascripts %}
