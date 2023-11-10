@@ -3,10 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Address;
+use App\Entity\Facturation;
+use App\Entity\Product;
 use Faker\Factory;
-use App\Entity\User;
 use Faker\Generator;
-use App\Entity\InfoUser;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -27,10 +27,23 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // ici on va appeler toutes nos fonctions load
+
         // fonction loadAddress
         $this->loadAddress($manager);
+        // fonction loadFacturation
+        $this->loadFacturation($manager);
+        // fonction loadProduct
+        $this->loadProduct($manager);
 
+        // on flush pour envoyer vers la BDD avec le d:f:l
         $manager->flush();
+    }
+
+    // méthode random pour boolean
+    function randomBoolean()
+    {
+        $randomNumber = rand(0, 1);
+        return $randomNumber === 1;
     }
 
     // méthode qui alimente Address
@@ -46,6 +59,44 @@ class AppFixtures extends Fixture
             $address->setCountry($this->faker->country);
             $manager->persist($address);
             $this->addReference('address_' . $i, $address);
+        }
+    }
+
+    // méthode qui alimente Facturation
+    public function loadFacturation(ObjectManager $manager)
+    {
+        for ($i = 1; $i <= 4; $i++) {
+            $facturation = new Facturation();
+            $facturation->setIsPayed($this->randomBoolean());
+            $facturation->setDateStart($this->faker->dateTimeBetween($dateStart = '-10 years', $DateEnd = '-1 month'));
+            $facturation->setDateEnd($this->faker->dateTimeBetween($dateStart = '-10 years', $DateEnd = 'now'));
+            $facturation->setNbPeople($this->faker->numberBetween($min = 1, $max = 6));
+            $facturation->setAddress($this->faker->streetAddress);
+            $facturation->setZipCode($this->faker->postcode);
+            $facturation->setCity($this->faker->city);
+            $facturation->setCountry($this->faker->country);
+            $facturation->setPriceTotal($this->faker->numberBetween($min = 9, $max = 900));
+            $manager->persist($facturation);
+            $this->addReference('facuration_' . $i, $facturation);
+        }
+    }
+
+    // méthode qui alimente Product
+    public function loadProduct(ObjectManager $manager)
+    {
+        $productArray = [
+            ['key' => 1, 'label' => 'Drapeau', 'imagePath' => 'flag.jpg', 'description' => 'Voici le drapeau de notre club. N\'hésitez pas à l\'amener avec vous sur vos évènemets sportifs et le prendre avec vous sur vos futurs podiums !', 'price' => 9],
+            ['key' => 2, 'label' => 'T-shirt', 'imagePath' => 't-shirt-spartacademy.png', 'description' => 'Tenue officielle Spartacademy, T-shirt disponible dans les tailles XS, S, M, L et XL. Nous avons une coupe pour les hommes ainsi qu\'une coupe pour les femmes', 'price' => 19],
+        ];
+
+        foreach ($productArray as $value) {
+            $product = new Product();
+            $product->setLabel($value['label']);
+            $product->setImagePath($value['imagePath']);
+            $product->setDescription($value['description']);
+            $product->setPrice($value['price']);
+            $manager->persist($product);
+            $this->addReference('product_' . $value['key'], $product);
         }
     }
 
