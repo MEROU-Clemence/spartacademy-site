@@ -1,6 +1,8 @@
 <header>
-	<div class="header">
+	<div
+		class="header">
 
+		{# Menu fixe #}
 		<div class="p-1 infos-first-line d-flex justify-content-around">
 			<div>
 				<i class="fa-solid fa-location-dot"></i>
@@ -17,7 +19,7 @@
 				<img class="logo" src="{{ asset('img/logo_spartacademy.jpg') }}" alt="logo spartacademy">
 			</div>
 			<div class="picto-header" style="width : 25%">
-				<i class="fa-solid fa-bars"></i>
+				<i class="fa-solid fa-bars" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"></i>
 				<i class="fa-regular fa-user"></i>
 				<i class="fa-solid fa-bag-shopping"></i>
 			</div>
@@ -28,4 +30,34 @@
 		</div>
 
 	</div>
+
+	{# Menu Mobile #}
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+			<button type="button" class="btn" data-bs-dismiss="offcanvas" aria-label="Close">
+				<i class="icon-cross fas fa-times"></i>
+			</button>
+		</div>
+		<div class="offcanvas-body">
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Le Club</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Se Préparer</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Boutique</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 </header>

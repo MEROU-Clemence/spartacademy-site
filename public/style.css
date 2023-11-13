@@ -10,6 +10,7 @@
 
 /* HEADER */
 
+/* header fixe */
 .header {
     background-color: #030303;
     border-bottom: #B9B9B9 solid;
@@ -43,10 +44,28 @@
 
 .fr {
     color: #B9B9B9;
-    padding-right: 10px;
+    padding: 0 10px 2px 0;
 }
 
+/* header mobile */
 
+#mobileMenu {
+    background-color: #FEFEFE;
+}
+
+.offcanvas-header {
+    background-color: #030303;
+    border-bottom: #B9B9B9 solid;
+    color: #FEFEFE;
+}
+
+.icon-cross {
+    color: #FEFEFE;
+}
+
+.icon-cross:hover {
+    color: #F24E1E;
+}
 
 
 
