@@ -112,6 +112,23 @@
 
 /* MAIN */
 
+/* main gallery */
+
+.image-gallery {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.gallery-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.gallery-container img {
+    width: 100%;
+    height: auto;
+}
+
 /* main informatif */
 
 .main {
@@ -242,7 +259,7 @@
 }
 
 .form-contact h3 {
-    padding-bottom: 20px;
+    padding-top: 30px;
 }
 
 .form-contact div {
@@ -317,7 +334,7 @@
 .footer h4 {
     color: #030303;
     font-size: 18px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .pubs-footer {

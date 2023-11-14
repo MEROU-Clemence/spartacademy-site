@@ -7,6 +7,13 @@
 
 	<main>
 		<div class="main">
+			<div class="image-gallery">
+				<div class="gallery-container">
+					{% for gallery in gallerys %}
+						<img src="{{ asset(gallery.imagePath) }}" alt="{{ gallery.label }}">
+					{% endfor %}
+				</div>
+			</div>
 			<div>
 				<div class="first-paragraph">
 					<div class="first-paragraph-title">
