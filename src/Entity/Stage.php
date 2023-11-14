@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,9 +18,6 @@ class Stage
 
     #[ORM\Column(length: 255)]
     private ?string $label = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $imagePath = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateStart = null;
@@ -42,6 +41,14 @@ class Stage
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\ManyToMany(targetEntity: Gallery::class)]
+    private Collection $gallery;
+
+    public function __construct()
+    {
+        $this->gallery = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,18 +62,6 @@ class Stage
     public function setLabel(string $label): static
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getImagePath(): ?string
-    {
-        return $this->imagePath;
-    }
-
-    public function setImagePath(string $imagePath): static
-    {
-        $this->imagePath = $imagePath;
 
         return $this;
     }
@@ -151,6 +146,30 @@ class Stage
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getGallery(): Collection
+    {
+        return $this->gallery;
+    }
+
+    public function addGallery(Gallery $gallery): static
+    {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery->add($gallery);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): static
+    {
+        $this->gallery->removeElement($gallery);
 
         return $this;
     }

@@ -2,16 +2,18 @@
 
 namespace App\DataFixtures;
 
+use DateTime;
 use Faker\Factory;
 use App\Entity\User;
 use Faker\Generator;
+use App\Entity\Media;
 use App\Entity\Stage;
 use App\Entity\Address;
+use App\Entity\Gallery;
 use App\Entity\Product;
 use App\Entity\InfoUser;
 use App\Entity\Facturation;
 use App\Entity\Reservation;
-use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -37,6 +39,8 @@ class AppFixtures extends Fixture
         $this->loadAddress($manager);
         // fonction loadFacturation
         $this->loadFacturation($manager);
+        // fonction loadGallery
+        $this->loadGallery($manager);
         // fonction loadProduct
         $this->loadProduct($manager);
         // fonction loadInfoUser
@@ -47,6 +51,8 @@ class AppFixtures extends Fixture
         $this->loadStage($manager);
         // fonction loadReservation
         $this->loadReservation($manager);
+        // fonction loadMedia
+        $this->loadMedia($manager);
 
         // on flush pour envoyer vers la BDD avec le d:f:l
         $manager->flush();
@@ -96,18 +102,90 @@ class AppFixtures extends Fixture
         }
     }
 
+    // méthode qui alimente Gallery
+    public function loadGallery(ObjectManager $manager)
+    {
+        $galleryArray = [
+            ['key' => 1, 'label' => 'Andorra podium AG clem 2022', 'imagePath' => 'andorra2022_podium1.jpg'],
+            ['key' => 2, 'label' => 'Andorra podium AG clem 2023', 'imagePath' => 'andorra2023_podium1.jpg'],
+            ['key' => 3, 'label' => 'Alexandre atlas carcassonne', 'imagePath' => 'atlas.jpg'],
+            ['key' => 4, 'label' => 'Etienne chaine carry Andorra', 'imagePath' => 'chain_carry1.jpg'],
+            ['key' => 5, 'label' => 'Tom chaine carry Andorra', 'imagePath' => 'chain_carry2.jpg'],
+            ['key' => 6, 'label' => 'Etienne bucket esterel', 'imagePath' => 'esterel2022_bucket_carry.jpg'],
+            ['key' => 7, 'label' => 'Depart femmes Elite 2022 esterel', 'imagePath' => 'esterel2022_depart_super_elite.jpg'],
+            ['key' => 8, 'label' => 'Guilhem poduim FNS 2022', 'imagePath' => 'esterel2022_podium1.jpg'],
+            ['key' => 9, 'label' => 'Esterel podium AG etienne 2022', 'imagePath' => 'esterel2022_podium2.jpg'],
+            ['key' => 10, 'label' => 'Esterel podium AG guilhem 2022', 'imagePath' => 'esterel2022_podium3.jpg'],
+            ['key' => 11, 'label' => 'Esterel podium Elite clem 2023', 'imagePath' => 'esterel2023_podium.png'],
+            ['key' => 12, 'label' => 'Andorra charlotte 2022 filet', 'imagePath' => 'filet1.jpg'],
+            ['key' => 13, 'label' => 'Filet terrain', 'imagePath' => 'filet2.png'],
+            ['key' => 14, 'label' => 'Esterel final line clem 2023', 'imagePath' => 'final_line.jpg'],
+            ['key' => 15, 'label' => 'Carcassonne fire jump mag 2023', 'imagePath' => 'firejump.jpg'],
+            ['key' => 16, 'label' => 'Flag spartacademy', 'imagePath' => 'flag.jpg'],
+            ['key' => 17, 'label' => 'Logo OCR gris', 'imagePath' => 'img3.png'],
+            ['key' => 18, 'label' => 'Inverted Wall terrain', 'imagePath' => 'inverted_wall.png'],
+            ['key' => 19, 'label' => 'Guilhem javelot morzine', 'imagePath' => 'javelot.png'],
+            ['key' => 20, 'label' => 'Logo casque Spartacademy', 'imagePath' => 'logo_casque.jpg'],
+            ['key' => 21, 'label' => 'Logo grand Spartacademy', 'imagePath' => 'logo_spartacademy.jpg'],
+            ['key' => 22, 'label' => 'Logo OCR orange', 'imagePath' => 'logo-ocr-base.png'],
+            ['key' => 23, 'label' => 'Logo spartan Orange', 'imagePath' => 'logo-spartan-base.png'],
+            ['key' => 24, 'label' => 'Logo spartan gris penché', 'imagePath' => 'logo-spartan-gris-transparent.png'],
+            ['key' => 25, 'label' => 'Logo spartan gris droit', 'imagePath' => 'logo-spartan-gris.png'],
+            ['key' => 26, 'label' => 'Camion echelle singe club', 'imagePath' => 'monkeybar_nomade.jpg'],
+            ['key' => 27, 'label' => 'Terrain multi rings', 'imagePath' => 'multi_rings1.png'],
+            ['key' => 28, 'label' => 'Anne-Sarah Carcassonne multi rings', 'imagePath' => 'multi_rings2.jpg'],
+            ['key' => 29, 'label' => 'Logo OCR vert', 'imagePath' => 'ocrwc.png'],
+            ['key' => 30, 'label' => 'Pancakes spartacademy', 'imagePath' => 'pancakes1.png'],
+            ['key' => 31, 'label' => 'Lucie pancakes carcassonne', 'imagePath' => 'pancakes2.jpg'],
+            ['key' => 32, 'label' => 'Anne-Marie podium espagne', 'imagePath' => 'podium1.jpg'],
+            ['key' => 33, 'label' => 'Lin rope climb carcassonne', 'imagePath' => 'rope_climb.jpg'],
+            ['key' => 34, 'label' => 'Anne-Marie Laurent slake lines', 'imagePath' => 'slack_line.jpg'],
+            ['key' => 35, 'label' => 'Logo spartan classique', 'imagePath' => 'spartan.png'],
+            ['key' => 36, 'label' => 'Spear throw crea', 'imagePath' => 'spear-throw-example.png'],
+            ['key' => 37, 'label' => 'T-shirt Spartacademy', 'imagePath' => 't-shirt-spartacademy.png'],
+            ['key' => 38, 'label' => 'Charlotte et Lucie', 'imagePath' => 'team1.jpg'],
+            ['key' => 39, 'label' => 'Aline en course', 'imagePath' => 'team2.jpg'],
+            ['key' => 40, 'label' => 'Tom Lucie Charlotte', 'imagePath' => 'team3.jpg'],
+            ['key' => 41, 'label' => 'Anne-Sarah Mag Guilhem', 'imagePath' => 'team4.jpg'],
+            ['key' => 42, 'label' => 'Anne-Sarah Laurent Alex Mag Charlotte Lucie', 'imagePath' => 'team5.jpg'],
+            ['key' => 43, 'label' => 'Team entrainement Baixas', 'imagePath' => 'team6.jpg'],
+            ['key' => 44, 'label' => 'Team entrainement Baixas2', 'imagePath' => 'team7.jpg'],
+            ['key' => 45, 'label' => 'Course Reynes', 'imagePath' => 'team8.jpg'],
+            ['key' => 46, 'label' => 'Course PO', 'imagePath' => 'team9.jpg'],
+            ['key' => 47, 'label' => 'Anne-Marie Charlotte Lucie Sandra Aline', 'imagePath' => 'team10.jpg'],
+            ['key' => 48, 'label' => 'Team entrainement renfo', 'imagePath' => 'team11.jpg'],
+            ['key' => 49, 'label' => 'Team entrainement piste', 'imagePath' => 'team12.jpg'],
+            ['key' => 50, 'label' => 'Course Ceret', 'imagePath' => 'team13.png'],
+            ['key' => 51, 'label' => 'Twister Filet terrain', 'imagePath' => 'terrain1.jpg'],
+            ['key' => 52, 'label' => 'Wall and Monkey terrain', 'imagePath' => 'terrain2.jpg'],
+            ['key' => 53, 'label' => 'Coach on the wall', 'imagePath' => 'terrain3.jpg'],
+            ['key' => 54, 'label' => 'Sandra Rope traverse', 'imagePath' => 'traverse_rope.jpg'],
+            ['key' => 55, 'label' => 'Twister terrain', 'imagePath' => 'twister.png'],
+            ['key' => 56, 'label' => 'Coach on the wall2', 'imagePath' => 'wall1.jpg'],
+            ['key' => 57, 'label' => 'Walls terrain', 'imagePath' => 'wall2.png']
+        ];
+
+        foreach ($galleryArray as $value) {
+            $gallery = new Gallery();
+            $gallery->setLabel($value['label']);
+            $gallery->setImagePath($value['imagePath']);
+
+            $manager->persist($gallery);
+            $this->addReference('gallery_' . $value['key'], $gallery);
+        }
+    }
+
     // méthode qui alimente Product
     public function loadProduct(ObjectManager $manager)
     {
         $productArray = [
-            ['key' => 1, 'label' => 'Drapeau', 'imagePath' => 'flag.jpg', 'description' => 'Voici le drapeau de notre club. N\'hésitez pas à l\'amener avec vous sur vos évènemets sportifs et le prendre avec vous sur vos futurs podiums !', 'price' => 9],
-            ['key' => 2, 'label' => 'T-shirt', 'imagePath' => 't-shirt-spartacademy.png', 'description' => 'Tenue officielle Spartacademy, T-shirt disponible dans les tailles XS, S, M, L et XL. Nous avons une coupe pour les hommes ainsi qu\'une coupe pour les femmes', 'price' => 19],
+            ['key' => 1, 'label' => 'Drapeau', 'description' => 'Voici le drapeau de notre club. N\'hésitez pas à l\'amener avec vous sur vos évènemets sportifs et le prendre avec vous sur vos futurs podiums !', 'price' => 9],
+            ['key' => 2, 'label' => 'T-shirt', 'description' => 'Tenue officielle Spartacademy, T-shirt disponible dans les tailles XS, S, M, L et XL. Nous avons une coupe pour les hommes ainsi qu\'une coupe pour les femmes', 'price' => 19],
         ];
 
         foreach ($productArray as $value) {
             $product = new Product();
             $product->setLabel($value['label']);
-            $product->setImagePath($value['imagePath']);
             $product->setDescription($value['description']);
             $product->setPrice($value['price']);
 
@@ -162,13 +240,12 @@ class AppFixtures extends Fixture
     public function loadStage(ObjectManager $manager)
     {
         $stageArray = [
-            ['key' => 1, 'label' => 'Préparation Spartan Race', 'imagePath' => 'slack_line.jpg', 'description' => 'Stage en immersion pour se préparer aux Spartan Races. Nous aurons l\'occasion de travailler tous les points importants que nous allons retrouver dans une course à obstacles. Venez seul ou entre amis pour vous tester ou vous perfectionner.', 'dateStart' => '2021-01-23 10:00:00', 'dateEnd' => '2021-06-23 17:00:00', 'nbMaxPeople' => 12, 'addressId' => 1, 'priceAdult' => 200, 'priceChild' => 120]
+            ['key' => 1, 'label' => 'Préparation Spartan Race', 'description' => 'Stage en immersion pour se préparer aux Spartan Races. Nous aurons l\'occasion de travailler tous les points importants que nous allons retrouver dans une course à obstacles. Venez seul ou entre amis pour vous tester ou vous perfectionner.', 'dateStart' => '2021-01-23 10:00:00', 'dateEnd' => '2021-06-23 17:00:00', 'nbMaxPeople' => 12, 'addressId' => 1, 'priceAdult' => 200, 'priceChild' => 120]
         ];
 
         foreach ($stageArray as $value) {
             $stage = new Stage();
             $stage->setLabel($value['label']);
-            $stage->setImagePath($value['imagePath']);
             $stage->setDescription($value['description']);
             $stage->setDateStart(new \DateTime($value['dateStart']));
             $stage->setDateEnd(new \DateTime($value['dateEnd']));
@@ -200,6 +277,25 @@ class AppFixtures extends Fixture
 
             $manager->persist($reservation);
             $this->addReference('reservation_' . $value['key'], $reservation);
+        }
+    }
+
+    // méthode qui alimente média
+    public function loadMedia(objectManager $manager)
+    {
+        $mediaArray = [
+            ['key' => 1, 'label' => 'Exemple média', 'description' => 'Superbe compétition de sport à obstacles à perpignan !', 'dateStart' => '2021-01-23 10:00:00', 'dateEnd' => '2021-02-23 17:00:00']
+        ];
+
+        foreach ($mediaArray as $value) {
+            $media = new Media();
+            $media->setLabel($value['label']);
+            $media->setDescription($value['description']);
+            $media->setDateStart(new \DateTime($value['dateStart']));
+            $media->setDateEnd(new \DateTime($value['dateEnd']));
+
+            $manager->persist($media);
+            $this->addReference('media_' . $value['key'], $media);
         }
     }
 }

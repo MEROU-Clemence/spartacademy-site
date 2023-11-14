@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\MediaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product
+#[ORM\Entity(repositoryClass: MediaRepository::class)]
+class Media
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,8 +22,11 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $price = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateStart = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateEnd = null;
 
     #[ORM\ManyToMany(targetEntity: Gallery::class)]
     private Collection $gallery;
@@ -61,14 +65,26 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getDateStart(): ?\DateTimeInterface
     {
-        return $this->price;
+        return $this->dateStart;
     }
 
-    public function setPrice(int $price): static
+    public function setDateStart(?\DateTimeInterface $dateStart): static
     {
-        $this->price = $price;
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    public function getDateEnd(): ?\DateTimeInterface
+    {
+        return $this->dateEnd;
+    }
+
+    public function setDateEnd(?\DateTimeInterface $dateEnd): static
+    {
+        $this->dateEnd = $dateEnd;
 
         return $this;
     }
