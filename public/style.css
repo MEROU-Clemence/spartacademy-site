@@ -104,6 +104,8 @@
 
 /* MAIN */
 
+/* main informatif */
+
 .main {
     margin-top: 125px;
 }
@@ -176,6 +178,90 @@
     background: linear-gradient(to bottom right, #030303 50%, transparent 50%);
     padding: 20px 20px 50px 20px;
     position: relative;
+}
+
+/* main, formulaire de contact */
+
+.contact-paragraph-title {
+    background: linear-gradient(to bottom left, transparent 50%, #030303 50%);
+    color: #FEFEFE;
+    padding: 40px 20px 40px 20px;
+    position: relative;
+}
+
+.contact-paragraph-title h2 {
+    background: linear-gradient(#fa1d00, #f33900, #f5993d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.contact-paragraph h3 {
+    font-size: 14px;
+}
+
+.contact-paragraph {
+    background-color: #030303;
+    color: #FEFEFE;
+    font-size: 14px;
+}
+
+.place,
+.hours,
+.form-contact {
+    background-color: #2F2F2F;
+    margin: 0 30px 0 30px;
+}
+
+.place h3,
+.hours h3,
+.form-contact h3 {
+    padding: 20px 10px 10px 20px;
+}
+
+.info-place {
+    padding: 10px 10px 10px 20px;
+}
+
+.info-hours {
+    padding: 0 10px 10px 20px;
+}
+
+.time-training {
+    padding-left: 10px;
+}
+
+.asterix {
+    font-size: 10px;
+    padding: 20px;
+}
+
+.sentence-about-media {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 20px 10px 20px 40px;
+}
+
+.social-media {
+    padding: 20px 40px 20px 10px;
+}
+
+.icon-social-media1,
+.icon-social-media2 {
+    background-color: #F24E1E;
+    border-radius: 25px;
+    color: #FEFEFE;
+    font-size: 14px;
+    margin: 2px;
+}
+
+.icon-social-media1 {
+    padding: 6px 8px 6px 8px;
+}
+
+.icon-social-media2 {
+    padding: 6px;
 }
 
 
