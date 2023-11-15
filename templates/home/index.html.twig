@@ -149,8 +149,9 @@
 									<button type="submit" class="d-flex button-contact">Envoyer message</button>
 								</div>
 
-
 								{{ form_end(form) }}
+
+								{% include "home/popupContact.html.twig" %}
 
 								<span class="d-flex asterix">Les champs indiqués par un astérisque (*) sont obligatoires</span>
 							</div>
@@ -171,6 +172,4 @@
 			</div>
 		</div>
 	</main>
-
-
 {% endblock %}

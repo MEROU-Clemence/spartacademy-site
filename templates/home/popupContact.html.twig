@@ -1,18 +1,5 @@
-{% extends 'base.html.twig' %}
-
-{# On ouvre le block body #}
-{% block body %}
-
-	<div class="d-flex flex-column align-items-center popup-contact" id="popup-contact">
-		<h2>Message envoyé avec succès !</h2>
-		<p>Merci pour votre message. Nous vous contacterons bientôt.</p>
-		<a onclick="closePopup()" class="btn btn-warning m-2" href="{{ path('app_home') }}">Fermer</a>
-	</div>
-
-	<script>
-		function closePopup() {
-document.getElementById('popup-contact').style.display = 'none';
-}
-	</script>
-
-{% endblock %}
+<div class="flex-column align-items-center popup-contact {{ modaleClass }}" id="popup-contact">
+	<h2>Message envoyé avec succès !</h2>
+	<p>Merci pour votre message. Nous vous contacterons bientôt.</p>
+	<a onclick="closePopup()" class="btn btn-warning m-2" href="{{ path('app_home') }}">Fermer</a>
+</div>

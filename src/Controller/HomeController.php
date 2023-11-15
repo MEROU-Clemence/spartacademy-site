@@ -33,13 +33,19 @@ class HomeController extends AbstractController
             $entityManager->flush();
 
             // popup pour dire que le message est bien envoyé
-            return $this->render('home/popupContact.html.twig');
+            return $this->render('home/index.html.twig', [
+                'gallerys' => $gallerys,
+                'contact' => $contact,
+                'form' => $form->createView(),
+                'modaleClass' => 'd-flex'
+            ]);
         }
 
         return $this->render('home/index.html.twig', [
             'gallerys' => $gallerys,
             'contact' => $contact,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'modaleClass' => 'd-none'
         ]);
     }
 }

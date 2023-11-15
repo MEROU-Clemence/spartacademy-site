@@ -316,6 +316,7 @@
 
 /* popup de confirmation de contact */
 .popup-contact {
+    color: #2F2F2F;
     position: fixed;
     top: 50%;
     left: 50%;
