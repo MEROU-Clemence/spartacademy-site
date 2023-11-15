@@ -9,6 +9,7 @@ use Faker\Generator;
 use App\Entity\Media;
 use App\Entity\Stage;
 use App\Entity\Address;
+use App\Entity\Contact;
 use App\Entity\Gallery;
 use App\Entity\Product;
 use App\Entity\InfoUser;
@@ -35,6 +36,8 @@ class AppFixtures extends Fixture
     {
         // ici on va appeler toutes nos fonctions load
 
+        // fonction loadContact
+        $this->loadContact($manager);
         // fonction loadAddress
         $this->loadAddress($manager);
         // fonction loadFacturation
@@ -63,6 +66,26 @@ class AppFixtures extends Fixture
     {
         $randomNumber = rand(0, 1);
         return $randomNumber === 1;
+    }
+
+    // méthode qui alimente Contact
+    public function loadContact(ObjectManager $manager)
+    {
+        $contactArray = [
+            ['key' => 1, 'name' => 'Exemple', 'firstname' => 'Exemple', 'phone' => '06235325852', 'email' => 'exemple@exemple.com', 'message' => 'Exemple de message dans la prise de contact depuis les fixtures.']
+        ];
+
+        foreach ($contactArray as $value) {
+            $contact = new Contact();
+            $contact->setName($value['name']);
+            $contact->setFirstname($value['firstname']);
+            $contact->setPhone($value['phone']);
+            $contact->setEmail($value['email']);
+            $contact->setMessage($value['message']);
+
+            $manager->persist($contact);
+            $this->addReference('contact_' . $value['key'], $contact);
+        }
     }
 
     // méthode qui alimente Address
