@@ -1,5 +1,7 @@
-<div class="flex-column align-items-center popup-contact {{ modaleClass }}" id="popup-contact">
+<div class="flex-column align-items-end popup-contact {{ modaleClass }}" id="popup-contact">
+	<a onclick="closePopup()" class="button-popup" href="{{ path('app_home') }}">
+		<i class="icon-cross fas fa-times"></i>
+	</a>
 	<h2>Message envoyé avec succès !</h2>
 	<p>Merci pour votre message. Nous vous contacterons bientôt.</p>
-	<a onclick="closePopup()" class="btn btn-warning m-2" href="{{ path('app_home') }}">Fermer</a>
 </div>

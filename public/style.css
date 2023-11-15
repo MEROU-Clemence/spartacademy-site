@@ -315,19 +315,39 @@
 }
 
 /* popup de confirmation de contact */
-.popup-contact {
-    color: #2F2F2F;
+.form-contact .popup-contact {
+    background: white;
+    border: 5px solid #F24E1E;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    left: 50%;
     position: fixed;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
+.popup-contact h2 {
+    color: #030303;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 0 10px 0;
+}
+
+.popup-contact p {
+    color: #2F2F2F;
+    font-size: 12px;
+}
+
+.button-popup i {
+    color: #030303;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.button-popup i:hover {
+    color: #E53B2B;
+    transform: scale(1.2);
+}
 
 /* FOOTER */
 
