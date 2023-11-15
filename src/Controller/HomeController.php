@@ -18,10 +18,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(Request $request, GalleryRepository $galleryRepository, EntityManagerInterface $entityManager): Response
     {
-        // je déclare mes variables
-        $gallerys = $galleryRepository->findAll();
+        // ma galerie limitée à 35
+        $gallery = $galleryRepository->getFirst35Gallery();
 
-        // repo de mes contacts
+        // mes contacts
         $contact = new Contact;
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -34,7 +34,7 @@ class HomeController extends AbstractController
 
             // popup pour dire que le message est bien envoyé
             return $this->render('home/index.html.twig', [
-                'gallerys' => $gallerys,
+                'gallery' => $gallery,
                 'contact' => $contact,
                 'form' => $form->createView(),
                 'modaleClass' => 'd-flex'
@@ -42,7 +42,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'gallerys' => $gallerys,
+            'gallery' => $gallery,
             'contact' => $contact,
             'form' => $form->createView(),
             'modaleClass' => 'd-none'

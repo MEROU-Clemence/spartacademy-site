@@ -21,28 +21,44 @@ class GalleryRepository extends ServiceEntityRepository
         parent::__construct($registry, Gallery::class);
     }
 
-//    /**
-//     * @return Gallery[] Returns an array of Gallery objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    // méthode pour récupérer les 35 premiers de ma Gallery
+    public function getFirst35Gallery()
+    {
+        $queryBuilder = $this->createQueryBuilder('g');
 
-//    public function findOneBySomeField($value): ?Gallery
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        // on limite aux 35 premiers résultats
+        $queryBuilder->setMaxResults(35);
+
+        // Exécutez la requête
+        $result = $queryBuilder->getQuery()->getResult();
+
+        return $result;
+    }
+
+
+
+    //    /**
+    //     * @return Gallery[] Returns an array of Gallery objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('g.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Gallery
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
