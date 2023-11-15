@@ -13,19 +13,20 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import './bootstrap';
 
 // galerie sur l'index qui fait défiler les images
-document.addEventListener('DOMContentLoaded', function () {
-    const galleryContainer = document.querySelector('.gallery-container');
+document.addEventListener("DOMContentLoaded", function () {
+    const galleryImages = document.querySelectorAll('.gallery-container img');
+    let currentImageIndex = 0;
 
-    function rotateGallery() {
-        const firstImage = galleryContainer.firstElementChild;
-        galleryContainer.style.transition = 'transform 0.5s ease-in-out';
-        galleryContainer.style.transform = 'translateX(-' + firstImage.clientWidth + 'px)';
-        setTimeout(() => {
-            galleryContainer.appendChild(firstImage);
-            galleryContainer.style.transition = 'none';
-            galleryContainer.style.transform = 'translateX(0)';
-        }, 500);
+    function showNextImage() {
+        galleryImages[currentImageIndex].classList.remove('visible');
+        galleryImages[currentImageIndex].classList.add('invisible');
+
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+
+        galleryImages[currentImageIndex].classList.remove('invisible');
+        galleryImages[currentImageIndex].classList.add('visible');
     }
 
-    setInterval(rotateGallery, 3000);
+    // cela change l'image toutes les 10 sec
+    setInterval(showNextImage, 10000);
 });

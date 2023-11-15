@@ -114,14 +114,12 @@
 
 /* main gallery */
 
-.image-gallery {
-    margin-top: 20px;
-    overflow: hidden;
+.visible {
+    display: block;
 }
 
-.gallery-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.invisible {
+    display: none;
 }
 
 .gallery-container img {
@@ -132,7 +130,7 @@
 /* main informatif */
 
 .main {
-    margin-top: 125px;
+    margin-top: 100px;
 }
 
 .main h2 {

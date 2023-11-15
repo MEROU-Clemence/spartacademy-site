@@ -10,7 +10,7 @@
 			<div class="image-gallery">
 				<div class="gallery-container">
 					{% for gallery in gallery %}
-						<img src="img{{ asset(gallery.imagePath) }}" alt="{{ gallery.label }}" style="height : 150px">
+						<img src="img{{ asset(gallery.imagePath) }}" alt="{{ gallery.label }}" style="height: 300px;" class="{% if loop.first %}visible{% else %}invisible{% endif %}">
 					{% endfor %}
 				</div>
 			</div>
