@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Gallery;
 use App\Form\ContactType;
 use App\Repository\GalleryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,28 +16,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
-    public function index(Request $request, GalleryRepository $galleryRepository): Response
+    public function index(Request $request, GalleryRepository $galleryRepository, EntityManagerInterface $entityManager): Response
     {
-        // Créez un tableau pour stocker les données du formulaire
-        $formData = [];
-
         // je déclare mes variables
-        $form = $this->createForm(ContactType::class, $formData);
         $gallerys = $galleryRepository->findAll();
 
-        // soumission du formulaire
+        // repo de mes contacts
+        $contact = new Contact;
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // TODO: envoyer en BDD avec onglet pour recevoir coté admin.
-            // TODO: faire popup pour dire que le message est bien envoyé
-            return $this->redirectToRoute('nom_de_popup_qui_dit_ok_message_bien_envoyé');
+            // Sauvegarde en BDD dans la table Contact
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+            // popup pour dire que le message est bien envoyé
+            return $this->render('home/popupContact.html.twig');
         }
 
         return $this->render('home/index.html.twig', [
-            'form' => $form->createView(),
-            'gallerys' => $gallerys
+            'gallerys' => $gallerys,
+            'contact' => $contact,
+            'form' => $form->createView()
         ]);
     }
 }
