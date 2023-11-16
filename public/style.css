@@ -368,8 +368,13 @@
     left: 50%;
     position: fixed;
     top: 50%;
+    text-decoration: none;
     transform: translate(-50%, -50%);
     z-index: 1000;
+}
+
+.popup-contact a {
+    text-decoration: none;
 }
 
 .popup-contact h2 {
