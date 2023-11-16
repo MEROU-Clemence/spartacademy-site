@@ -21,13 +21,13 @@ class GalleryRepository extends ServiceEntityRepository
         parent::__construct($registry, Gallery::class);
     }
 
-    // méthode pour récupérer les 35 premiers de ma Gallery
-    public function getFirst35Gallery()
+    // méthode pour récupérer les 5 premiers de ma Gallery
+    public function getFirst4Gallery()
     {
         $queryBuilder = $this->createQueryBuilder('g');
 
         // on limite aux 35 premiers résultats
-        $queryBuilder->setMaxResults(35);
+        $queryBuilder->setMaxResults(4);
 
         // Exécutez la requête
         $result = $queryBuilder->getQuery()->getResult();

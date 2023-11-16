@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // cela change l'image toutes les 10 sec
-    setInterval(showNextImage, 10000);
+    setInterval(showNextImage, 5000);
 
 });

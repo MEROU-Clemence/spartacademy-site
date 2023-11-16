@@ -18,8 +18,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(Request $request, GalleryRepository $galleryRepository, EntityManagerInterface $entityManager): Response
     {
-        // ma galerie limitée à 35
-        $gallery = $galleryRepository->getFirst35Gallery();
+        // ma galerie limitée à 4
+        $gallery = $galleryRepository->getFirst4Gallery();
 
         // mes contacts
         $contact = new Contact;

@@ -123,9 +123,16 @@
 }
 
 .gallery-container img {
+    object-fit: cover;
+    height: 40vw;
     width: 100%;
-    height: auto;
 }
+
+.gallery-container {
+    width: 100%;
+}
+
+
 
 /* main informatif */
 
