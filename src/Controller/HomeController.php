@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     public function index(Request $request, GalleryRepository $galleryRepository, EntityManagerInterface $entityManager): Response
     {
         // ma galerie limitée à 4
-        $gallery = $galleryRepository->getFirst4Gallery();
+        $gallerys = $galleryRepository->getFirst4Gallery();
 
         // mes contacts
         $contact = new Contact;
@@ -34,7 +34,7 @@ class HomeController extends AbstractController
 
             // popup pour dire que le message est bien envoyé
             return $this->render('home/index.html.twig', [
-                'gallery' => $gallery,
+                'gallerys' => $gallerys,
                 'contact' => $contact,
                 'form' => $form->createView(),
                 'modaleClass' => 'd-flex'
@@ -42,7 +42,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'gallery' => $gallery,
+            'gallerys' => $gallerys,
             'contact' => $contact,
             'form' => $form->createView(),
             'modaleClass' => 'd-none'

@@ -9,8 +9,20 @@
 		<div class="main">
 			<div class="image-gallery">
 				<div class="gallery-container">
-					{% for gallery in gallery %}
-						<img src="img{{ asset(gallery.imagePath) }}" alt="{{ gallery.label }}" class="{% if loop.first %}visible{% else %}invisible{% endif %}">
+					{% for gallery in gallerys %}
+						<div class="slide">
+							<img src="img{{ asset(gallery.imagePath) }}" alt="{{ gallery.label }}" class="{% if loop.first %}visible{% else %}invisible{% endif %}">
+							<div
+								class="arrow-container">
+								<!-- Flèches de navigation -->
+								<div class="p-2 arrow prev" onclick="showPreviousImage()">
+									<i class="fa-solid fa-angle-left"></i>
+								</div>
+								<div class="p-2 arrow next" onclick="showNextImage()">
+									<i class="fa-solid fa-angle-right"></i>
+								</div>
+							</div>
+						</div>
 					{% endfor %}
 				</div>
 			</div>

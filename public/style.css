@@ -122,16 +122,45 @@
     display: none;
 }
 
-.gallery-container img {
+.gallery-container {
+    width: 100%;
+}
+
+.image-gallery {
+    position: relative;
+}
+
+.slide img {
     object-fit: cover;
     height: 40vw;
     width: 100%;
 }
 
-.gallery-container {
+.arrow-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    opacity: 0;
 }
 
+.arrow i {
+    color: #F24E1E;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.arrow i:hover {
+    color: #FEFEFE;
+    transform: scale(1.2);
+}
+
+.slide:hover .arrow-container {
+    opacity: 1;
+}
 
 
 /* main informatif */
