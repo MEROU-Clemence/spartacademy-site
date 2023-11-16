@@ -250,7 +250,7 @@ class AppFixtures extends Fixture
         for ($i = 2; $i <= 4; $i++) {
             $user = new User();
             $user->setEmail($this->faker->email);
-            $user->setPassword($this->encoder->hashPassword($user, 'prof'));
+            $user->setPassword($this->encoder->hashPassword($user, 'user'));
             $user->setRoles(['ROLE_CLIENT']);
             $user->setInfoUser($this->getReference('infoUser_' . $i));
 

@@ -48,4 +48,21 @@ class HomeController extends AbstractController
             'modaleClass' => 'd-none'
         ]);
     }
+
+    // création de ma route pour mon espace connecté
+    #[Route('/mon-compte', name: 'app_mon_compte')]
+    public function monCompte()
+    {
+        // si l'utilisateur est un admin
+        if ($this->isGranted('ROLE_ADMIN')) {
+            // redirection vers la page administrateur
+            return $this->render('home/monCompteAdmin.html.twig', []);
+        }
+
+        // si l'utilisateur est un client
+        if ($this->isGranted('ROLE_CLIENT')) {
+            // redirection vers la page client
+            return $this->render('home/monCompteClient.html.twig', []);
+        }
+    }
 }
