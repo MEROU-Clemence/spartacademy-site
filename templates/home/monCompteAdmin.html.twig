@@ -1,7 +1,12 @@
-{% include "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Accès admin
+{% endblock %}
 
 {% block body %}
-
-	<h1>Compte Administrateur</h1>
-
+    {% include 'home/index.html.twig' %}
+<div>
+    <h1>Compte Administrateur</h1>
+</div>
 {% endblock %}
